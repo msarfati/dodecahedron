@@ -45,9 +45,9 @@ wheelhouse:
 
 build-wheels:
 	pip wheel .
-	pip wheel -r requirements.txt
+	pip wheel -r dependencies.txt
 
 install-wheels:
-	pip install --use-wheel --find-links=wheelhouse --no-index -r requirements.txt
+	pip install --use-wheel --find-links=wheelhouse --no-index -r dependencies.txt
 
 .PHONY: clean install test server watch db single docs shell dbshell wheelhouse prototype build-wheels install-wheels
