@@ -24,6 +24,5 @@ def init_db():
 def populate_db():
     models.User.add_system_users()
 
-
 if __name__ == "__main__":
     manager.run()

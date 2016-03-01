@@ -1,5 +1,6 @@
 #  Dodecahedron
 by Michael Sarfati (c) 2016
+MIT License
 
 # What it is
 - My personal Flask Boilerplate Project
@@ -12,3 +13,4 @@ by Michael Sarfati (c) 2016
 ## RESTful API
 - [reqparse](https://flask-restful-cn.readthedocs.org/en/0.3.5/reqparse.html) is deprecated, integrate [Marshmallow](https://marshmallow.readthedocs.org/en/latest/)
 - Auto-generate schemas from models with [Marshmallow-SQLAlchemy](https://marshmallow-sqlalchemy.readthedocs.org/en/latest/)
+

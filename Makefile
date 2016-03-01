@@ -38,7 +38,7 @@ db:
 	SETTINGS=$(CURRENT_CONFIG) bin/manage.py populate_db
 
 dbshell:
-	sqlite3 $(DB_URI)
+	SETTINGS=$(CURRENT_CONFIG) bin/manage.py dbshell
 
 wheelhouse:
 	python setup.py bdist_wheel

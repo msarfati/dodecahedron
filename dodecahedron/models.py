@@ -20,6 +20,7 @@ class User(db.Model, ModelMixin):
     username = db.Column(db.String(32), index=True)
     password_hash = db.Column(db.String(128))
     created = db.Column(db.DateTime)
+    confirmed = db.Column(db.Boolean)
 
     def __init__(self, username, password):
         self.username = username
