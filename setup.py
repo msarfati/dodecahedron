@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-
 from setuptools import setup
 import os
 import re
 
-version = '0.1'
 
 def fpath(name):
     return os.path.join(os.path.dirname(__file__), name)
@@ -14,7 +12,7 @@ def read(fname):
     return open(fpath(fname)).read()
 
 
-file_text = read(fpath('./__meta__.py'))
+file_text = read(fpath('./dodecahedron/__meta__.py'))
 
 
 def grep(attrname):
@@ -26,19 +24,24 @@ def grep(attrname):
 setup(
     version=grep('__version__'),
     name='Dodecahedron',
-    description="Magic Carpet server",
-    # packages=[
-    #     'Dodecahedron',
-    # ],
-    # scripts=[
-    #     "bin/runserver.py",
-    #     "bin/manage.py",
-    # ],
-    classifiers=[],  # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+    description="A Flask boilerplate implementation",
+    packages=[
+        'dodecahedron',
+    ],
+    scripts=[
+        "bin/manage.py",
+        "bin/wsgi.py",
+    ],
+    classifiers=[
+        'Development Status :: 2 - Pre-Alpha',
+        'Framework :: Flask',
+        'Intended Audience :: Developers',
+    ],  # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     include_package_data=True,
     keywords='',
     author=grep('__author__'),
     author_email=grep('__email__'),
-    install_requires=read('requirements.txt'),
+    install_requires=read('dependencies.txt'),
+    license="MIT",
     zip_safe=False,
 )
