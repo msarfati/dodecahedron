@@ -10,7 +10,6 @@ ipython==4.1.1
 ipython-genutils==0.1.0
 itsdangerous==0.24
 Jinja2==2.8
-Dodecahedron==0.1.0
 MarkupSafe==0.23
 marshmallow==2.6.0
 marshmallow-sqlalchemy==0.8.1

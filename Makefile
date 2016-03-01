@@ -1,6 +1,10 @@
 SHELL=/bin/bash
 PROJECT_NAME="Dodecahedron"
+CURRENT_CONFIG=$(DEV_CONFIG)
+DEV_CONFIG="$$PWD/etc/dev.conf"
+PRODUCTION_CONFIG="/etc/dodecahedron.conf"
 TEST_DUMP="./maketests.log"
+TESTING_CONFIG="$$PWD/etc/testing.conf"
 
 install:
 	python setup.py install
@@ -13,31 +17,31 @@ clean:
 	-rm `find . -name "*.pyc"`
 	find . -name "__pycache__" -delete
 
-wheelhouse:
-	python setup.py bdist_wheel
-
 server:
-	python app.py runserver
+	SETTINGS=$(CURRENT_CONFIG) bin/manage.py runserver
 
 shell:
-	python app.py shell
+	SETTINGS=$(CURRENT_CONFIG) bin/manage.py shell
+
+test:
+	rm -f $(TEST_DUMP)
+	SETTINGS=$(TESTING_CONFIG) nosetests --verbosity=3 2>&1 | tee -a $(TEST_DUMP)
+
+single:
+	SETTINGS=$(TESTING_CONFIG) nosetests --attr=single --verbosity=3
 
 watch:
 	watchmedo shell-command -R -p "*.py" -c 'echo \\n\\n\\n\\nSTART; date; $(TEST_CMD) -c etc/nose/test-single.cfg; date' .
 
-test:
-	rm -f $(TEST_DUMP)
-	nosetests
-
-single:
-	nosetests --attr=single --verbosity=3
-
 db:
-	python app.py init_db
-	python app.py populate_db
+	SETTINGS=$(CURRENT_CONFIG) bin/manage.py init_db
+	SETTINGS=$(CURRENT_CONFIG) bin/manage.py populate_db
 
 dbshell:
 	sqlite3 $(DB_URI)
+
+wheelhouse:
+	python setup.py bdist_wheel
 
 build-wheels:
 	pip wheel .
