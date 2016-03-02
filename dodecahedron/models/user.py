@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-abs
+# -*- coding: utf-8 -*-
 from dodecahedron import db
 import datetime
 import flask
@@ -7,6 +7,10 @@ from itsdangerous import (
     as Serializer, BadSignature, SignatureExpired)
 from .mixins import ModelMixin
 from passlib.apps import custom_app_context as pwd_context
+
+roles_users = db.Table('roles_users',
+    db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+    db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
 
 
 class User(db.Model, ModelMixin):
@@ -19,7 +23,7 @@ class User(db.Model, ModelMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), index=True)
     email = db.Column(db.String(255), unique=True)
-    password_hash = db.Column(db.String(128))
+    password = db.Column(db.String(128))
     created = db.Column(db.DateTime)
     confirmed = db.Column(db.Boolean)
     confirmed_at = db.Column(db.DateTime())
@@ -28,18 +32,12 @@ class User(db.Model, ModelMixin):
     role_id = db.Column(db.Integer, db.ForeignKey("role.id"), nullable=True)
     role = db.relationship('Role', backref=db.backref('user', lazy='dynamic'))
 
-    # def __init__(self, username, password):
-    #     self.username = username
-    #     self.hash_password(password)
-    #     self.created = datetime.datetime.utcnow()
-    #     flask.current_app.logger.debug("Created User object: {0}".format(username))
-
     def __repr__(self):
-        return self.username
+        return "<User={}>".format(self.username)
 
     # Password methods
     def verify_password(self, password):
-        return pwd_context.verify(password, self.password_hash)
+        return pwd_context.verify(password, self.password)
 
     def generate_auth_token(self, expiration=600):
         s = Serializer(flask.current_app.config['SECRET_KEY'], expires_in=expiration)
@@ -74,8 +72,9 @@ class User(db.Model, ModelMixin):
         new_user = cls(
             username=username,
             email=email,
-            password_hash=pwd_context.encrypt(password),
+            password=pwd_context.encrypt(password),
         )
+        db.session.add(new_user)
         db.session.commit()
         if confirmed:
             new_user.confirm()
@@ -98,13 +97,3 @@ class User(db.Model, ModelMixin):
     @classmethod
     def add_system_users(cls):
         pass
-
-
-class Role(db.Model, ModelMixin):
-    __tablename__ = "role"
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(80), unique=True)
-    description = db.Column(db.String(255))
-
-    def __str__(self):
-        return self.name
