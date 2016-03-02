@@ -5,14 +5,10 @@ from flask import Flask
 from nose.plugins.attrib import attr
 
 
-class DodecahedronTestCase(TestCaseMixin):
-
-    # @attr('single')
-    def test_testing(self):
-        self.assertEqual(2, 1+1)
+class UserTestCase(TestCaseMixin):
 
     @attr('single')
-    def test_users(self):
+    def test_register(self):
         'Testing models.User.register'
         user = models.User.register(
             username='alice',

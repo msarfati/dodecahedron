@@ -25,6 +25,9 @@ class User(db.Model, ModelMixin):
     confirmed_at = db.Column(db.DateTime())
     active = db.Column(db.Boolean())
 
+    role_id = db.Column(db.Integer, db.ForeignKey("role.id"), nullable=True)
+    role = db.relationship('Role', backref=db.backref('user', lazy='dynamic'))
+
     # def __init__(self, username, password):
     #     self.username = username
     #     self.hash_password(password)

@@ -24,9 +24,10 @@ def grep(attrname):
 setup(
     version=grep('__version__'),
     name='Dodecahedron',
-    description="A Flask boilerplate implementation",
+    description="A Flask boilerplate implementation.",
     packages=[
         'dodecahedron',
+        'dodecahedron.tests',
     ],
     scripts=[
         "bin/manage.py",
