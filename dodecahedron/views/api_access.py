@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
+from .. import auth, models
+from flask import Blueprint, g, make_response
+import json
+
+api_access = Blueprint('api_access', __name__)
+# This blueprint handles RESTful API authentication and token generation.
+
+
 @auth.error_handler
 def unauthorized():
-    # return 403 instead of 401 to prevent browsers from displaying the default
-    # auth dialog
     return make_response("<html><body><h1>404 Not Found</h1></body></html>", 404)
 
 
@@ -20,8 +26,8 @@ def verify_password(username_or_token, password):
     return True
 
 
-@app.route('/api/get_auth_token')
+@api_access.route('/get_auth_token')
 @auth.login_required
 def get_auth_token():
     token = g.user.generate_auth_token(600)
-    return jsonify({'token': token.decode('ascii'), 'duration': 600})
+    return json.dumps({'token': token.decode('ascii'), 'duration': 600})

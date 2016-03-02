@@ -29,6 +29,7 @@ setup(
         'dodecahedron',
         'dodecahedron.tests',
         'dodecahedron.models',
+        'dodecahedron.views',
     ],
     scripts=[
         "bin/manage.py",

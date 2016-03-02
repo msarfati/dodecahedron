@@ -3,9 +3,8 @@ MIT License
 Copyright (c) 2016 Michael Sarfati
 
 ## What's this?
-- Fork of [Flask-Diamond](https://flask-diamond.readthedocs.org/en/latest/), for pedagogical and nitpicky reasons.
+- A fork of [Flask-Diamond](https://flask-diamond.readthedocs.org/en/latest/) web framework, forked for pedagogical purposes.
 - Inspired as well by [Sinatra](www.sinatrarb.com) and [NodeJS](https://nodejs.org/en/)
-- My personal micro webframework playground
 
 ## Getting started
 1. Clone project

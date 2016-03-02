@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from dodecahedron import db
+from .. import db
 from ..mixins import ModelMixin
 
 

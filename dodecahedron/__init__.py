@@ -6,8 +6,12 @@ app_instance = None
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
+from flask.ext.httpauth import HTTPBasicAuth
+auth = HTTPBasicAuth()
+
 
 class Dodecahedron(object):
+
     def __init__(self, app=None):
         self.app = app
         if app is not None:
@@ -18,11 +22,16 @@ class Dodecahedron(object):
             name = __name__
 
         self.app = Flask(name)
-
         self.app.config.from_envvar('SETTINGS')
+
         self.init_logs()
         self.init_database()
+        self.init_blueprints()
         # self.init_rest()
+
+    def init_blueprints(self):
+        from .views.api_access import api_access
+        self.app.register_blueprint(api_access, url_prefix="/api")
 
     def init_database(self):
         db.app = self.app

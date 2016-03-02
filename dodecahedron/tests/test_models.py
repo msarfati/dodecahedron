@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from ..mixins import TestCaseMixin
-from dodecahedron import db, models
+from .. import db, models
 from flask import Flask
 from nose.plugins.attrib import attr
 
