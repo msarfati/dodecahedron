@@ -16,6 +16,7 @@ manager.add_command("publicserver", Server(port=app.config['PORT'], host="0.0.0.
 
 @manager.command
 def init_db():
+    db.drop_all()
     db.create_all()
     db.session.commit()
 
