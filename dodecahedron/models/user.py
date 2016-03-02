@@ -92,10 +92,39 @@ class User(db.Model, ModelMixin):
         self.active = True
 
     def add_role(self, role_name):
-        self.roles.append(role_name)
-        # db.session.add(self)
+        """
+        :param role_name: The name of the role.
+        :type role_name: str
+        """
+        from .role import Role
+        self.roles.append(Role.query.filter_by(name=role_name).first())
         db.session.commit()
 
     @classmethod
     def add_system_users(cls):
-        pass
+        """
+        Add system users and roles.
+        """
+        from .role import Role
+        roles = [
+            "admin",
+            "guest",
+        ]
+        for i in roles:
+            if not Role.query.filter_by(name=i).first():
+                db.session.add(Role(name=i))
+                db.session.commit()
+
+        cls.register(
+            username='admin',
+            password='qqq',
+            confirmed=True,
+            roles=["admin"],
+        )
+
+        cls.register(
+            username='guest',
+            password='guest',
+            confirmed=True,
+            roles=["guest"],
+        )

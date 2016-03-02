@@ -5,7 +5,7 @@ DEV_CONFIG=$$PWD/etc/dev.conf
 PRODUCTION_CONFIG=/etc/dodecahedron.conf
 TEST_DUMP=./maketests.log
 TESTING_CONFIG=$$PWD/etc/testing.conf
-TEST_CMD=SETTINGS=$(TESTING_CONFIG) nosetests --verbosity=3 2>&1
+TEST_CMD=SETTINGS=$(TESTING_CONFIG) nosetests --verbosity=2 --where=./dodecahedron/tests
 
 install:
 	python setup.py install
@@ -26,10 +26,10 @@ shell:
 
 test:
 	rm -f $(TEST_DUMP)
-	$(TEST_CMD) | tee -a $(TEST_DUMP)
+	$(TEST_CMD) 2>&1 | tee -a $(TEST_DUMP)
 
 single:
-	SETTINGS=$(TESTING_CONFIG) nosetests --attr=single --verbosity=3
+	$(TEST_CMD) --attr=single
 
 watch:
 	watchmedo shell-command -R -p "*.py" -c 'echo \\n\\n\\n\\nSTART; date; $(TEST_CMD); date' .
