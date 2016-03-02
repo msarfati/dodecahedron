@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from .mixins import TestCaseMixin
+from dodecahedron import models
 from flask import Flask
 from nose.plugins.attrib import attr
 
@@ -12,13 +13,12 @@ class DodecahedronTestCase(TestCaseMixin):
 
     @attr('single')
     def test_users(self):
-        
-        # CREATE
-        self.client
-        # READ (list)
+        'Testing models.User.register'
+        user = models.User.register(
+            username='alice',
+            password='qqq',
+            confirmed=True,
+        )
 
-        # READ (id)
-
-        # UPDATE
-
-        # DELETE
+        user = models.User.query.filter_by(username='alice')
+        self.assertIsNotNone(user, "User retrievable")

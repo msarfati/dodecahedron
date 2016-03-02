@@ -38,7 +38,7 @@ db:
 	SETTINGS=$(CURRENT_CONFIG) bin/manage.py populate_db
 
 dbshell:
-	SETTINGS=$(CURRENT_CONFIG) bin/manage.py dbshell
+	sqlite3 /tmp/dodecahedron-dev.db
 
 wheelhouse:
 	python setup.py bdist_wheel
