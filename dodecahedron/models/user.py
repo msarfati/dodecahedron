@@ -5,7 +5,7 @@ import flask
 from itsdangerous import (
     TimedJSONWebSignatureSerializer
     as Serializer, BadSignature, SignatureExpired)
-from .mixins import ModelMixin
+from ..mixins import ModelMixin
 from passlib.apps import custom_app_context as pwd_context
 
 roles_users = db.Table('roles_users',
@@ -29,11 +29,14 @@ class User(db.Model, ModelMixin):
     confirmed_at = db.Column(db.DateTime())
     active = db.Column(db.Boolean())
 
-    role_id = db.Column(db.Integer, db.ForeignKey("role.id"), nullable=True)
-    role = db.relationship('Role', backref=db.backref('user', lazy='dynamic'))
+    roles = db.relationship('Role',
+        enable_typechecks=False,
+        secondary=roles_users,
+        # backref=db.backref('users', lazy='dynamic'),
+    )
 
     def __repr__(self):
-        return "<User={}>".format(self.username)
+        return '<User="{}">'.format(self.username)
 
     # Password methods
     def verify_password(self, password):
@@ -89,10 +92,9 @@ class User(db.Model, ModelMixin):
         self.active = True
 
     def add_role(self, role_name):
-        pass
-        # self.role = role_name
+        self.roles.append(role_name)
         # db.session.add(self)
-        # db.session.commit()
+        db.session.commit()
 
     @classmethod
     def add_system_users(cls):

@@ -10,4 +10,4 @@ class Role(db.Model, ModelMixin):
     description = db.Column(db.String(255))
 
     def __repr__(self):
-        return "<Role={}>".format(self.username)
+        return '<Role="{}">'.format(self.name)

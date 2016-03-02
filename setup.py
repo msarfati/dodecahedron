@@ -28,6 +28,7 @@ setup(
     packages=[
         'dodecahedron',
         'dodecahedron.tests',
+        'dodecahedron.models',
     ],
     scripts=[
         "bin/manage.py",
