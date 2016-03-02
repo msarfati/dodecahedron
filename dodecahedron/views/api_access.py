@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .. import auth, models
-from flask import Blueprint, g, make_response
+from flask import Blueprint, g, make_response, render_template
 import json
 
 api_access = Blueprint('api_access', __name__)

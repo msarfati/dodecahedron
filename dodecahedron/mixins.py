@@ -31,7 +31,6 @@ class TestCaseMixin(TestCase):
         """
         Prepare for a test case.
         """
-
         db.create_all()
         current_app.logger.debug("setup complete")
         super().setUp()
@@ -40,7 +39,6 @@ class TestCaseMixin(TestCase):
         """
         Clean up after a test case.
         """
-
         db.session.remove()
         db.drop_all()
         super().tearDown()
