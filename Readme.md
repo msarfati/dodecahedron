@@ -1,12 +1,13 @@
 # :six_pointed_star: Dodecahedron :six_pointed_star:
 :page_with_curl: MIT License
+
 :black_nib: Copyright (c) 2016 Michael Sarfati
 
-## What's this?
-- A fork of [Flask-Diamond](https://flask-diamond.readthedocs.org/en/latest/) web framework, forked for pedagogical purposes.
+## :interrobang: What's this?
+- A fork of [:rocket: Flask-Diamond](https://flask-diamond.readthedocs.org/en/latest/) web framework, forked for pedagogical purposes.
 - Inspired as well by [Sinatra](www.sinatrarb.com) and [NodeJS](https://nodejs.org/en/)
 
-## Getting started
+## :clipboard: Getting started
 1. Clone project
 ```bash
 git clone git@github.com:msarfati/dodecahedron.git
@@ -27,7 +28,7 @@ make install && make db && make test
 make server
 ```
 
-## TODO
+## :chart_with_upwards_trend: TODO
 ### Conveniences
 - better `dbshell` support
 
