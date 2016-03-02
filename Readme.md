@@ -1,5 +1,5 @@
 # :six_pointed_star: Dodecahedron :six_pointed_star:
- :page_with_curl: MIT License
+:page_with_curl: MIT License
 :black_nib: Copyright (c) 2016 Michael Sarfati
 
 ## What's this?
