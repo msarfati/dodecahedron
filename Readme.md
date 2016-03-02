@@ -1,6 +1,6 @@
 # :six_pointed_star: Dodecahedron :six_pointed_star:
-MIT License
-Copyright (c) 2016 Michael Sarfati
+ :page_with_curl: MIT License
+:black_nib: Copyright (c) 2016 Michael Sarfati
 
 ## What's this?
 - A fork of [Flask-Diamond](https://flask-diamond.readthedocs.org/en/latest/) web framework, forked for pedagogical purposes.
