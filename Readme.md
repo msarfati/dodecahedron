@@ -1,4 +1,4 @@
-#  Dodecahedron
+# :six_pointed_star: Dodecahedron :six_pointed_star:
 MIT License
 Copyright (c) 2016 Michael Sarfati
 
