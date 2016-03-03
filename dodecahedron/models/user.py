@@ -25,8 +25,8 @@ class User(db.Model, ModelMixin):
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(128))
     created = db.Column(db.DateTime)
-    confirmed = db.Column(db.Boolean)
-    confirmed_at = db.Column(db.DateTime())
+    confirmed = db.Column(db.Boolean, default=False)
+    confirmed_at = db.Column(db.DateTime)
     active = db.Column(db.Boolean())
 
     roles = db.relationship('Role',
@@ -76,6 +76,7 @@ class User(db.Model, ModelMixin):
             username=username,
             email=email,
             password=pwd_context.encrypt(password),
+            confirmed=confirmed,
         )
         db.session.add(new_user)
         db.session.commit()

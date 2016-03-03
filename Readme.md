@@ -28,11 +28,17 @@ make install && make db && make test
 make server
 ```
 
-## :chart_with_upwards_trend: TODO
-### Conveniences
-- better `dbshell` support
+## :chart_with_upwards_trend: Current Direction
+### Strong RESTful API Support
+- Adhere more strictly to RESTful principles:
+    - [*Architectural Styles and the Design of Network-based Software Architectures*](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm) by Roy Fielding
+    - *RESTful Web APIs* by Leonard Richardson and Mike Amundsen
+    - [*REST CookBook*](http://restcookbook.com/)
+- RESTful code generation based on models and simplify model creation with generation scripts
 
-### RESTful API
+#### Implementation Plans
 - [reqparse](https://flask-restful-cn.readthedocs.org/en/0.3.5/reqparse.html) is deprecated, integrate [Marshmallow](https://marshmallow.readthedocs.org/en/latest/)
 - Auto-generate schemas from models with [Marshmallow-SQLAlchemy](https://marshmallow-sqlalchemy.readthedocs.org/en/latest/)
 
+### Conveniences
+- Better `dbshell` support

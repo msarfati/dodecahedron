@@ -3,6 +3,7 @@ from ..mixins import TestCaseMixin
 from . import fixtures
 import base64
 from nose.plugins.attrib import attr
+from werkzeug import Client
 from werkzeug.datastructures import Headers
 
 
@@ -20,18 +21,19 @@ class ApiAccessTestCase(TestCaseMixin):
         self.assert404(response)
 
     @attr('single')
-    def test_verify_password(self):
-        'Testing views.api_access.verify_password'
+    def test_get_auth_token(self):
+        'Testing views.api_access.get_auth_token'
+        # headers = Headers()
+        # headers.add('Authorization',
+            # 'Basic ' + str(base64.b64encode(bytes('alice:qqq', 'utf-8'))))
+        # response = Client.open(self.client, path='/api/get_auth_token',
+            # headers=headers)
+
         headers = [('Authorization',
                     'Basic ' + str(base64.b64encode(bytes('alice:qqq', 'utf-8'))))]
         response = self.client.get(
             '/api/get_auth_token',
             headers=headers
         )
-        print(response.data); assert False;
         import ipdb; ipdb.set_trace()
-
-    # @attr('single')
-    def test_get_auth_token(self):
-        'Testing views.api_access.get_auth_token'
-        pass
+        print(response.data); assert False;

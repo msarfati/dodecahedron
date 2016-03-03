@@ -7,9 +7,9 @@ api_access = Blueprint('api_access', __name__)
 # This blueprint handles RESTful API authentication and token generation.
 
 
-@auth.error_handler
-def unauthorized():
-    return make_response("<html><body><h1>404 Not Found</h1></body></html>", 404)
+# @auth.error_handler
+# def unauthorized():
+#     return make_response("<html><body><h1>404 Not Found</h1></body></html>", 404)
 
 
 @auth.verify_password
