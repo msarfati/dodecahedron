@@ -26,7 +26,7 @@ class User(db.Model, ModelMixin):
     password = db.Column(db.String(128))
     created = db.Column(db.DateTime)
     confirmed = db.Column(db.Boolean, default=False)
-    confirmed_at = db.Column(db.DateTime)
+    confirmed_at = db.Column(db.DateTime())
     active = db.Column(db.Boolean())
 
     roles = db.relationship('Role',

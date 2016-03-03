@@ -30,8 +30,8 @@ class Dodecahedron(object):
         # self.init_rest()
 
     def init_blueprints(self):
-        from .views.api_access import api_access
-        self.app.register_blueprint(api_access, url_prefix="/api")
+        from .views.login_auth import login_auth
+        self.app.register_blueprint(login_auth, url_prefix="/login")
 
     def init_database(self):
         db.app = self.app

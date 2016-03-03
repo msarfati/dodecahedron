@@ -34,6 +34,7 @@ make server
     - [*Architectural Styles and the Design of Network-based Software Architectures*](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm) by Roy Fielding
     - *RESTful Web APIs* by Leonard Richardson and Mike Amundsen
     - [*REST CookBook*](http://restcookbook.com/)
+    - [*REST API Tutorial: Status Codes*](http://www.restapitutorial.com/httpstatuscodes.html)
 - RESTful code generation based on models and simplify model creation with generation scripts
 
 #### Implementation Plans

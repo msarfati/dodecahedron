@@ -17,7 +17,7 @@ class ApiAccessTestCase(TestCaseMixin):
     # @attr('single')
     def test_unauthorized(self):
         'Testing views.api_access.unauthorized'
-        response = self.client.get('/api/get_auth_token')
+        response = self.client.get('/login_auth/get_auth_token')
         self.assert404(response)
 
     @attr('single')
@@ -28,12 +28,17 @@ class ApiAccessTestCase(TestCaseMixin):
             # 'Basic ' + str(base64.b64encode(bytes('alice:qqq', 'utf-8'))))
         # response = Client.open(self.client, path='/api/get_auth_token',
             # headers=headers)
+        # headers = \
+        #     [('Authorization',
+        #     'Basic ' + login)]
 
-        headers = [('Authorization',
-                    'Basic ' + str(base64.b64encode(bytes('alice:qqq', 'utf-8'))))]
+        login = str(base64.b64encode(bytes('alice:qqq', 'ascii')))
+        # headers = {'Authorization': 'Basic ' + login}
+        headers = Headers()
+        headers.add('Authorization', 'Basic ' + login)
         response = self.client.get(
-            '/api/get_auth_token',
+            '/login_auth/get-auth-token',
             headers=headers
         )
-        import ipdb; ipdb.set_trace()
         print(response.data); assert False;
+        # import ipdb; ipdb.set_trace()
