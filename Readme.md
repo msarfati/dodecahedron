@@ -3,6 +3,8 @@
 
 :black_nib: Copyright (c) 2016 Michael Sarfati
 
+**Status: Pre-alpha**
+
 ## :interrobang: What's this?
 - A fork of [:rocket: Flask-Diamond](https://flask-diamond.readthedocs.org/en/latest/) web framework, forked for pedagogical purposes.
 - Inspired as well by [Sinatra](www.sinatrarb.com) and [NodeJS](https://nodejs.org/en/)

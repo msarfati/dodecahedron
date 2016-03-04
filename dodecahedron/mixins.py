@@ -14,6 +14,12 @@ class ModelMixin(object):
         return {k: v for k, v in self.__dict__.items() if not re.match("^_", k)}
 
 
+class RestVerbMixin(object):
+    """
+    Provides RESTful verb boilerplate and conveniences.
+    """
+    pass
+
 class TestCaseMixin(TestCase):
     """
     Use with flask.ext.testing.TestCase

@@ -3,16 +3,13 @@ from ..mixins import TestCaseMixin
 from . import fixtures
 import base64
 from nose.plugins.attrib import attr
-from werkzeug import Client
-from werkzeug.datastructures import Headers
 
 
-class ApiAccessTestCase(TestCaseMixin):
+class LoginAuthTestCase(TestCaseMixin):
 
     def setUp(self):
         super().setUp()
         fixtures.typical_user()
-        # self.base_url = "http://localhost:{}".format(self.app.config['PORT'])
 
     # @attr('single')
     def test_unauthorized(self):
