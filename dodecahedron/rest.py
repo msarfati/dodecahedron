@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from app import auth, db, models
 import json
 from flask.ext.restful import abort, Api, Resource, reqparse, fields, marshal

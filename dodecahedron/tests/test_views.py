@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from ..mixins.test import TestCaseMixin
 from . import fixtures
 import base64

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from ..mixins.test import TestCaseMixin
 from .. import db, models
 import datetime
@@ -43,8 +42,8 @@ class UserTestCase(TestCaseMixin):
 
 class BookAuthorsTestCase(TestCaseMixin):
 
-    # @attr('single')
-    def sandbox(self):
+    @attr('single')
+    def test_sandbox(self):
         author = models.Author.create(
             last_name="Orwell",
             first_name="George",

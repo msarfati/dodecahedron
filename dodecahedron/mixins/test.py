@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .. import create_app, db
 from flask import current_app
 from flask.ext.testing import TestCase

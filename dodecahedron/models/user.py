@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .. import db
 from ..mixins.model import CRUDMixin
 import datetime

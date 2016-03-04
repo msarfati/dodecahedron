@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .. import auth, models
 from flask import Blueprint, g, make_response, render_template
 import json
