@@ -7,12 +7,13 @@ from nose.plugins.attrib import attr
 
 class ModelsTestCase(TestCaseMixin):
 
-    # @attr('single')
+    @attr('single')
     def test_demo_environment(self):
-        models.Genre.create(name="fiction")
-        models.Language.create(name="English")
-        models.Language.create(name="German")
+        genre = models.Genre.create(name="fiction")
+        language_english = models.Language.create(name="English")
+        language_german = models.Language.create(name="German")
 
+        # Creat author
         author = models.Author.create(
             last_name="Orwell",
             first_name="George",
@@ -20,25 +21,24 @@ class ModelsTestCase(TestCaseMixin):
             dod=datetime.date(1950, 1, 21)
         )
 
-        book = models.Book.create(
+        # And the book, and its edition
+        models.Book.create_book(
             title="Nineteen Eighty-Four",
-            authors=[author],
-        )
-
-        edition = models.Book.create(
-            book=book,
-            title=book.title,
             isbn='0547249640',
             published_date=datetime.date(1949, 6, 8),
-        )
-        book = models.Book.find()
-
-        translator = models.Author.create(
-            last_name="Orwell",
-            first_name="George",
-            dob=datetime.date(1903, 7, 25),
-            dod=datetime.date(1950, 1, 21)
+            genre=genre,
+            authors=[author],
+            language=language_english,
         )
 
-        import ipdb; ipdb.set_trace()
+        book = models.Book.find(title="Nineteen Eighty-Four")
+
+        # translator = models.Author.create(
+        #     last_name="Orwell",
+        #     first_name="George",
+        #     dob=datetime.date(1903, 7, 25),
+        #     dod=datetime.date(1950, 1, 21)
+        # )
+
+        # import ipdb; ipdb.set_trace()
         # book = models.Book()
