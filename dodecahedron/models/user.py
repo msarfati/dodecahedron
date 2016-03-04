@@ -19,14 +19,30 @@ class User(db.Model, CRUDMixin):
     http://blog.miguelgrinberg.com/post/restful-authentication-with-flask
     """
     __tablename__ = 'user'
+
     id = db.Column(db.Integer, primary_key=True)
+    "integer -- primary key"
+
     username = db.Column(db.String(32), index=True)
+    "string -- username address"
+
     email = db.Column(db.String(255), unique=True)
-    password = db.Column(db.String(128))
+    "string -- email address"
+
+    password = db.Column(db.String(255))
+    "password -- the users's password"
+
     created = db.Column(db.DateTime)
+    "datetime -- when the user account was created"
+
     confirmed = db.Column(db.Boolean, default=False)
+    "boolean -- whether the user account is active"
+
     confirmed_at = db.Column(db.DateTime())
+    "datetime -- when the user account was confirmed"
+
     active = db.Column(db.Boolean())
+    "boolean -- whether the user account is active"
 
     roles = db.relationship('Role',
         enable_typechecks=False,

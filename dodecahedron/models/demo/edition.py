@@ -13,6 +13,10 @@ class Edition(db.Model, CRUDMixin):
     subtitle = db.Column(db.Text)
     isbn = db.Column(db.String(13))
     published_date = db.Column(db.Date)
+    edition_number = db.Column(db.String(30))
+
+    is_translation = db.Column(db.Boolean)
+    'Is this a translation?'
 
     book = db.relationship(
         'Book',
@@ -31,4 +35,11 @@ class Edition(db.Model, CRUDMixin):
     )
 
     language = db.relationship('Language', backref=db.backref('edition', lazy='dynamic'))
-    language_id = db.Column(db.Integer, db.ForeignKey("Language.id"))
+    language_id = db.Column(db.Integer, db.ForeignKey("language.id"))
+
+    secondary_authors = db.relationship('Author',
+        enable_typechecks=False,
+        secondary=editions_authors,
+        # backref=db.backref('users', lazy='dynamic'),
+    )
+    'list -- Translators, editors, new authors'

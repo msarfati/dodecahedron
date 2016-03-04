@@ -5,22 +5,39 @@ from flask import Flask
 from nose.plugins.attrib import attr
 
 
-class BookTestCase(TestCaseMixin):
+class ModelsTestCase(TestCaseMixin):
 
     # @attr('single')
-    def test_sandbox(self):
+    def test_demo_environment(self):
+        models.Genre.create(name="fiction")
+        models.Language.create(name="English")
+        models.Language.create(name="German")
+
         author = models.Author.create(
             last_name="Orwell",
             first_name="George",
-            born=datetime.date(1903, 7, 25),
-            died=datetime.date(1950, 1, 21)
+            dob=datetime.date(1903, 7, 25),
+            dod=datetime.date(1950, 1, 21)
         )
+
         book = models.Book.create(
             title="Nineteen Eighty-Four",
+            authors=[author],
+        )
+
+        edition = models.Book.create(
+            book=book,
+            title=book.title,
             isbn='0547249640',
             published_date=datetime.date(1949, 6, 8),
-            published_city="London",
-            authors=[author],
+        )
+        book = models.Book.find()
+
+        translator = models.Author.create(
+            last_name="Orwell",
+            first_name="George",
+            dob=datetime.date(1903, 7, 25),
+            dod=datetime.date(1950, 1, 21)
         )
 
         import ipdb; ipdb.set_trace()
