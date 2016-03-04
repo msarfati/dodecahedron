@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from .. import db
+from ..mixins.model import CRUDMixin
 import datetime
 import flask
 from itsdangerous import (
     TimedJSONWebSignatureSerializer
     as Serializer, BadSignature, SignatureExpired)
-from ..mixins import ModelMixin
 from passlib.apps import custom_app_context as pwd_context
 
 roles_users = db.Table('roles_users',
@@ -13,7 +13,7 @@ roles_users = db.Table('roles_users',
     db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
 
 
-class User(db.Model, ModelMixin):
+class User(db.Model, CRUDMixin):
     """
     Used for both users and applications.
 
@@ -36,7 +36,7 @@ class User(db.Model, ModelMixin):
     )
 
     def __repr__(self):
-        return '<User="{}">'.format(self.username)
+        return '<User(username="{}")>'.format(self.username)
 
     # Password methods
     def verify_password(self, password):

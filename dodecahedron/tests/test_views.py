@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ..mixins import TestCaseMixin
+from ..mixins.test import TestCaseMixin
 from . import fixtures
 import base64
 from nose.plugins.attrib import attr

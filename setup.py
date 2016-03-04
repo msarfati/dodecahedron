@@ -27,8 +27,10 @@ setup(
     description="A Flask boilerplate implementation.",
     packages=[
         'dodecahedron',
-        'dodecahedron.tests',
+        'dodecahedron.api',
+        'dodecahedron.mixins',
         'dodecahedron.models',
+        'dodecahedron.tests',
         'dodecahedron.views',
     ],
     scripts=[

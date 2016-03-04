@@ -1,24 +1,8 @@
 # -*- coding: utf-8 -*-
-from . import create_app, db
+from .. import create_app, db
 from flask import current_app
 from flask.ext.testing import TestCase
-import re
 
-
-class ModelMixin(object):
-    """
-    Use with db.Models.
-    """
-
-    def as_dict(self):
-        return {k: v for k, v in self.__dict__.items() if not re.match("^_", k)}
-
-
-class RestVerbMixin(object):
-    """
-    Provides RESTful verb boilerplate and conveniences.
-    """
-    pass
 
 class TestCaseMixin(TestCase):
     """
