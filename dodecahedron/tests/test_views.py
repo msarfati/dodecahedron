@@ -16,29 +16,17 @@ class ApiAccessTestCase(TestCaseMixin):
 
     # @attr('single')
     def test_unauthorized(self):
-        'Testing views.api_access.unauthorized'
+        'Testing (views.login_auth.unauthorized)'
         response = self.client.get('/login_auth/get_auth_token')
         self.assert404(response)
 
-    @attr('single')
+    # @attr('single')
     def test_get_auth_token(self):
-        'Testing views.api_access.get_auth_token'
-        # headers = Headers()
-        # headers.add('Authorization',
-            # 'Basic ' + str(base64.b64encode(bytes('alice:qqq', 'utf-8'))))
-        # response = Client.open(self.client, path='/api/get_auth_token',
-            # headers=headers)
-        # headers = \
-        #     [('Authorization',
-        #     'Basic ' + login)]
-
-        login = str(base64.b64encode(bytes('alice:qqq', 'ascii')))
-        # headers = {'Authorization': 'Basic ' + login}
-        headers = Headers()
-        headers.add('Authorization', 'Basic ' + login)
+        'Testing (views.login_auth.get_auth_token)'
+        login = base64.b64encode(bytes('alice:qqq', 'ascii')).decode('ascii')
+        headers = {'Authorization': 'Basic ' + login}
         response = self.client.get(
-            '/login_auth/get-auth-token',
+            '/login/get-auth-token',
             headers=headers
         )
-        print(response.data); assert False;
-        # import ipdb; ipdb.set_trace()
+        self.assertEqual(len(response.json['token']), 122)

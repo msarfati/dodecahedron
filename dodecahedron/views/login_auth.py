@@ -29,6 +29,10 @@ def verify_password(username_or_token, password):
 @login_auth.route('/get-auth-token')
 @auth.login_required
 def get_auth_token():
+    """
+    Generates an authentication token for 600 seconds.
+    :returns: json
+    """
     token = g.user.generate_auth_token(600)
     return json.dumps({'token': token.decode('ascii'), 'duration': 600})
 
@@ -37,3 +41,8 @@ def get_auth_token():
 @auth.login_required
 def get_resource():
     return json.dumps({'data': 'Hello, %s!' % g.user.username}), 200
+
+
+@login_auth.route('/sample')
+def get_sample():
+    return json.dumps(dict(msg='Hello'))
