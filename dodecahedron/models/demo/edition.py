@@ -31,7 +31,6 @@ class Edition(db.Model, CRUDMixin):
         db.Integer,
         db.ForeignKey("book.id"),
         nullable=False,
-        unique=True
     )
 
     language = db.relationship('Language', backref=db.backref('edition', lazy='dynamic'))

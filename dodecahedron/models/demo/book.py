@@ -34,7 +34,7 @@ class Book(db.Model, CRUDMixin):
         return [book, edition]
 
     @classmethod
-    def create_edition(self, book, **kwargs):
+    def create_edition(cls, book, **kwargs):
         """
         Convenience method for creating a new edition.
         """

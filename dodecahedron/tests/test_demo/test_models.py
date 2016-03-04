@@ -31,14 +31,20 @@ class ModelsTestCase(TestCaseMixin):
             language=language_english,
         )
 
+        translator = models.Author.create(
+            last_name="Wagenseil",
+            first_name="Kurt",
+            dob=datetime.date(1904, 5, 26),
+            dod=datetime.date(1988, 12, 14)
+        )
+
         book = models.Book.find(title="Nineteen Eighty-Four")
-
-        # translator = models.Author.create(
-        #     last_name="Orwell",
-        #     first_name="George",
-        #     dob=datetime.date(1903, 7, 25),
-        #     dod=datetime.date(1950, 1, 21)
-        # )
-
-        # import ipdb; ipdb.set_trace()
-        # book = models.Book()
+        book.create_edition(
+            book,
+            title="Neunzehnhundertvierundachtzig",
+            published_date=datetime.date(1981, 4, 19),
+            isbn="3550063474",
+            is_translation=True,
+            language=language_german,
+            secondary_authors=[translator],
+        )
