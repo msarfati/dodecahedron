@@ -38,17 +38,3 @@ class UserTestCase(TestCaseMixin):
         )
         self.assertIn(models.Role.query.filter_by(name="admin").first(), admin.roles)
         self.assertIn(models.Role.query.filter_by(name="guest").first(), guest.roles)
-
-
-class BookAuthorsTestCase(TestCaseMixin):
-
-    @attr('single')
-    def test_sandbox(self):
-        author = models.Author.create(
-            last_name="Orwell",
-            first_name="George",
-            born=datetime.date(1903, 7, 25),
-            died=datetime.date(1950, 1, 21)
-        )
-        # import ipdb; ipdb.set_trace()
-        # book = models.Book()

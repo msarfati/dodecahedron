@@ -49,7 +49,7 @@ class CRUDMixin(object):
         """
 
         if any(
-            (isinstance(id, basestring) and id.isdigit(),
+            (isinstance(id, str) and id.isdigit(),
              isinstance(id, (int, float))),
         ):
             return cls.query.get(int(id))
@@ -69,7 +69,7 @@ class CRUDMixin(object):
 
         instance = cls(**kwargs)
         obj = instance.save(_commit)
-        flask.current_app.logger.debug("create %s" % unicode(obj))
+        flask.current_app.logger.debug("create %s" % str(obj))
         return obj
 
     def update(self, _commit=True, **kwargs):
@@ -117,7 +117,4 @@ class CRUDMixin(object):
         return "<{}(id={})>".format(self.__class__.__name__, self.id)
 
     def __str__(self):
-        return self.__repr__()
-
-    def __unicode__(self):
         return self.__repr__()

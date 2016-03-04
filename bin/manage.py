@@ -22,7 +22,11 @@ def init_db():
 
 @manager.command
 def populate_db():
+    # from dodecahedron.tests import fixtures
     models.User.add_system_users()
+    if app.config["DEMO_MODE"] == True:
+        from dodecahedron.tests.test_demo import fixtures
+        fixtures.populate_demo()
 
 if __name__ == "__main__":
     manager.run()

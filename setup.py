@@ -29,7 +29,9 @@ setup(
         'dodecahedron.api',
         'dodecahedron.mixins',
         'dodecahedron.models',
+        'dodecahedron.models.demo',
         'dodecahedron.tests',
+        'dodecahedron.tests.test_demo',
         'dodecahedron.views',
     ],
     scripts=[
