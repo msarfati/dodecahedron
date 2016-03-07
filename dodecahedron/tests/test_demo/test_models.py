@@ -1,7 +1,6 @@
 from dodecahedron.mixins.test import TestCaseMixin
-from dodecahedron import db, models
+from dodecahedron import models
 import datetime
-from flask import Flask
 from nose.plugins.attrib import attr
 
 
@@ -14,6 +13,12 @@ class ModelsTestCase(TestCaseMixin):
         language_german = models.Language.create(name="German")
 
         # Creat author
+        author = models.Author.create(
+            last_name="Eliot",
+            first_name="George",
+            dob=datetime.date(1819, 11, 22),
+            dod=datetime.date(1880, 12, 22)
+        )
         author = models.Author.create(
             last_name="Orwell",
             first_name="George",
@@ -47,4 +52,17 @@ class ModelsTestCase(TestCaseMixin):
             is_translation=True,
             language=language_german,
             secondary_authors=[translator],
+        )
+
+        # import ipdb; ipdb.set_trace()
+        self.assertIn(
+            models.Author.query.filter_by(last_name="Orwell", first_name="George").first(),
+            models.Book.query.filter_by(title="Nineteen Eighty-Four").first().authors,
+            "Expected relationship holds (Orwell wrote 'Nineteen Eighty-Four'."
+        )
+
+        self.assertEquals(
+            models.Edition.query.filter_by(title="Nineteen Eighty-Four").first().book,
+            models.Book.query.filter_by(title="Nineteen Eighty-Four").first(),
+            "'Book' matches its edition."
         )
