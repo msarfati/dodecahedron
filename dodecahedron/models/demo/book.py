@@ -25,10 +25,10 @@ class Book(db.Model, CRUDMixin):
 
     @classmethod
     def create_book(cls, **kwargs):
-        get_args = lambda model, kwargs: {k: v for k, v in kwargs.items() if k in model.__table__.columns.keys()}
+        get_args = lambda model, kwargs: {k: v for k, v in kwargs.items() if k in model.__mapper__.attrs.keys()}
         book_args = get_args(cls, kwargs)
         edition_args = get_args(Edition, kwargs)
-        import ipdb; ipdb.set_trace()
+        # import ipdb; ipdb.set_trace()
 
         book = cls.create(**book_args)
         edition = cls.create_edition(book, **edition_args)

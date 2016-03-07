@@ -54,11 +54,10 @@ class ModelsTestCase(TestCaseMixin):
             secondary_authors=[translator],
         )
 
-        # import ipdb; ipdb.set_trace()
         self.assertIn(
             models.Author.query.filter_by(last_name="Orwell", first_name="George").first(),
             models.Book.query.filter_by(title="Nineteen Eighty-Four").first().authors,
-            "Expected relationship holds (Orwell wrote 'Nineteen Eighty-Four'."
+            "Expected relationship holds (Orwell wrote 'Nineteen Eighty-Four')."
         )
 
         self.assertEquals(
