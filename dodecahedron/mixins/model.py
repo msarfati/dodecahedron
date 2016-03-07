@@ -1,4 +1,5 @@
 from .. import db
+from marshmallow_sqlalchemy import ModelSchema
 import flask
 
 
@@ -118,3 +119,9 @@ class CRUDMixin(object):
 
     def __str__(self):
         return self.__repr__()
+
+
+class SchemasMixin(ModelSchema):
+
+    class Meta:
+        model = None

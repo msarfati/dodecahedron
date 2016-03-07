@@ -8,6 +8,9 @@ db = SQLAlchemy()
 from flask.ext.httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
 
+from flask_marshmallow import Marshmallow
+ma = Marshmallow()
+
 
 class Dodecahedron(object):
 
@@ -26,6 +29,7 @@ class Dodecahedron(object):
         self.init_logs()
         self.init_database()
         self.init_blueprints()
+        self.init_schemas()
         # self.init_rest()
 
     def init_blueprints(self):
@@ -54,6 +58,9 @@ class Dodecahedron(object):
             api_map(rest)
         rest_api.init_app(self.app)
         return rest_api
+
+    def init_schemas(self):
+        ma.init_app(self.app)
 
 
 def create_app():
