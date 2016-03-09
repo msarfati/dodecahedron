@@ -12,7 +12,7 @@ from flask_marshmallow import Marshmallow
 ma = Marshmallow()
 
 
-class Dodecahedron(object):
+class Dodecahedron:
 
     def __init__(self, app=None):
         self.app = app
@@ -28,8 +28,8 @@ class Dodecahedron(object):
 
         self.init_logs()
         self.init_database()
-        self.init_blueprints()
         self.init_schemas()
+        self.init_blueprints()
         # self.init_rest()
 
     def init_blueprints(self):

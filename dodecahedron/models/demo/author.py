@@ -1,8 +1,8 @@
 from dodecahedron import db
-from dodecahedron.mixins.model import CRUDMixin
+from dodecahedron.mixins.model import CRUDMixin, MarshmallowMixin
 
 
-class Author(db.Model, CRUDMixin):
+class Author(db.Model, CRUDMixin, MarshmallowMixin):
     __tablename__ = "author"
     id = db.Column(db.Integer(), primary_key=True)
 

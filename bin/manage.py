@@ -25,6 +25,7 @@ def populate_db():
     # from dodecahedron.tests import fixtures
     models.User.add_system_users()
     if app.config["DEMO_MODE"] == True:
+        # import ipdb; ipdb.set_trace()
         from dodecahedron.tests.test_demo import fixtures
         fixtures.populate_demo()
 

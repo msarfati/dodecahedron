@@ -1,12 +1,21 @@
+from . import ma
 from . import models
-from marshmallow_sqlalchemy import ModelSchema
 
 
-class AuthorSchema(ModelSchema):
+class AuthorSchema(ma.ModelSchema):
 
-    def __init__(self):
+    class Meta:
+        model = models.Author
+        # additional = (
+        #     "last_name",
+        #     "first_name",
+        #     "middle_names",
+        #     "dob",
+        #     "dod",
+        # )
 
-        class Meta:
-            print(dir(self))
-            print(self.name)
-            model = models.Author
+
+class BookSchema(ma.ModelSchema):
+
+    class Meta:
+        model = models.Book
