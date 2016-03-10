@@ -1,5 +1,4 @@
 from .. import db
-from .. import ma
 import flask
 
 
@@ -122,8 +121,14 @@ class CRUDMixin:
 
 
 class MarshmallowMixin:
-    # dump
 
+    def __schema__(self):
+        "Returns a Schema object based on the model name."
+        from .. import schemas
+        schema_name = type(self).__name__ + "Schema"
+        return getattr(schemas, schema_name)() if hasattr(schemas, schema_name) else None
+
+    # dump
     def dump(self):
         "serialize the Model object as a python object"
         return self.__schema__().dump(self).data
