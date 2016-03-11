@@ -1,6 +1,7 @@
 from . import ma
 from . import models
 from .factories import _schema_factory
+import sys
 
 model_list = (
     'Author',
@@ -10,29 +11,16 @@ model_list = (
     'Language'
 )
 
-schemas = map(lambda i: _schema_factory(i), model_list)
 
+def _build_schemas():
+    """
+    Builds schemas based on 'model_list'. Assumes models are exposed in dodacahedron.models.
+    """
+    for i in model_list:
+        setattr(
+            sys.modules[__name__],  # gets the reference to the current module
+            i,
+            _schema_factory(i)
+        )
 
-# class AuthorSchema(ma.ModelSchema):
-
-#     class Meta:
-#         model = models.Author
-#         # additional = (
-#         #     "last_name",
-#         #     "first_name",
-#         #     "middle_names",
-#         #     "dob",
-#         #     "dod",
-#         # )
-
-
-# class BookSchema(ma.ModelSchema):
-
-#     class Meta:
-#         model = models.Book
-
-
-# class EditionSchema(ma.ModelSchema):
-
-#     class Meta:
-#         model = models.Book
+_build_schemas()

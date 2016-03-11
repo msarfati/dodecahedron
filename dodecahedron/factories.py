@@ -12,5 +12,7 @@ def _schema_factory(model_name):
     return type(
         model_name + 'Schema',
         (ma.ModelSchema,),
-        {'Meta': type('Meta', (object, ), {'model': getattr(models, model_name)})}
+        {'Meta': type('Meta', (object, ),
+            {'model': getattr(models, model_name)})
+        }
     )
