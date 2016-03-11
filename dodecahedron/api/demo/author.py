@@ -1,11 +1,8 @@
-from .. import models
-from marshmallow_sqlalchemy import ModelSchema
+from ... import auth
+from ... import models
+from ...schemas import AuthorSchema
 from flask.ext.restful import abort, Api, Resource, reqparse, fields, marshal
 
-
-class AuthorSchema(ModelSchema):
-    class Meta:
-        model = models.Author
 
 class Author(Resource):
     decorators = [auth.login_required]

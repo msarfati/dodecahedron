@@ -37,11 +37,12 @@ make server
     - *RESTful Web APIs* by Leonard Richardson and Mike Amundsen
     - [*REST CookBook*](http://restcookbook.com/)
     - [*REST API Tutorial: Status Codes*](http://www.restapitutorial.com/httpstatuscodes.html)
+    - HATEOAS compliance
 - RESTful code generation based on models and simplify model creation with generation scripts
 
 #### Implementation Plans
-- [reqparse](https://flask-restful-cn.readthedocs.org/en/0.3.5/reqparse.html) is deprecated, integrate [Marshmallow](https://marshmallow.readthedocs.org/en/latest/)
-- Auto-generate schemas from models with [Marshmallow-SQLAlchemy](https://marshmallow-sqlalchemy.readthedocs.org/en/latest/)
+- :white_check_mark: ~~[reqparse](https://flask-restful-cn.readthedocs.org/en/0.3.5/reqparse.html) is deprecated, integrate [Marshmallow](https://marshmallow.readthedocs.org/en/latest/)~~
+- :white_check_mark: ~~Auto-generate schemas from models with [Marshmallow-SQLAlchemy](https://marshmallow-sqlalchemy.readthedocs.org/en/latest/)~~
 
 ### Conveniences
 - Better `dbshell` support

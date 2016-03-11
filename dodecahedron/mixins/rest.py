@@ -1,6 +1,6 @@
 
 
-class RestCollectionMixin(object):
+class RestCollectionMixin:
     """
     Used for Collections
     """
@@ -12,5 +12,5 @@ class RestCollectionMixin(object):
         return 201
 
 
-class RestInstanceMixin(object):
+class RestInstanceMixin:
     pass
