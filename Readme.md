@@ -40,7 +40,12 @@ make server
     - HATEOAS compliance
 - RESTful code generation based on models and simplify model creation with generation scripts
 
-#### Implementation Plans
+#### TODO
+* *Versioning*: Embed in the header
+- **Pagination**: Limit collection queries to some number (25?) globally. Support *limit* and *offset*, embed into query.
+- **Query** GET response: `api.dodecahedron.net/book?fields=title,author` will return `{"title": "my title", "author": [{"id": 1, "href": "..."} ]}`
+- Resource references / linking - in addition to returning object as JSON, return a `href` linking to the exact resource. Also, if there are any explicit relations, include 'href'
+- REST metaclass supporting HTTP verbs: POST, GET, PUT, DELETE, and possibly PATCH and HEAD
 - :white_check_mark: ~~[reqparse](https://flask-restful-cn.readthedocs.org/en/0.3.5/reqparse.html) is deprecated, integrate [Marshmallow](https://marshmallow.readthedocs.org/en/latest/)~~
 - :white_check_mark: ~~Auto-generate schemas from models with [Marshmallow-SQLAlchemy](https://marshmallow-sqlalchemy.readthedocs.org/en/latest/)~~
 

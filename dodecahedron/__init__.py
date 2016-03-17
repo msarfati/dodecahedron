@@ -11,6 +11,9 @@ auth = HTTPBasicAuth()
 from flask_marshmallow import Marshmallow
 ma = Marshmallow()
 
+from flask.ext.restful import Api
+rest_api = Api()
+
 
 class Dodecahedron:
 
@@ -24,13 +27,19 @@ class Dodecahedron:
             name = __name__
 
         self.app = Flask(name)
+
         self.app.config.from_envvar('SETTINGS')
 
         self.init_logs()
+
         self.init_database()
-        self.init_schemas()
+
         self.init_blueprints()
-        # self.init_rest()
+
+        self.init_schemas()
+
+        from .api import init_api
+        self.init_api(init_api)
 
     def init_blueprints(self):
         from .views.login_auth import login_auth
@@ -53,9 +62,10 @@ class Dodecahedron:
             self.app.logger.setLevel(logging.INFO)
         self.app.logger.info('Startup with log: %s' % self.app.config['LOG'])
 
-    def init_rest(self, api_map=None):
+    def init_api(self, api_map=None):
+        # import ipdb; ipdb.set_trace()
         if api_map:
-            api_map(rest)
+            api_map(rest_api)
         rest_api.init_app(self.app)
         return rest_api
 
