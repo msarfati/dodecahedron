@@ -1,7 +1,7 @@
 from ... import auth
 from ... import models
 from ...schemas import AuthorSchema
-from flask import jsonify
+from flask import jsonify, url_for
 from flask.ext.restful import abort, Api, Resource, reqparse, fields, marshal
 
 
@@ -38,11 +38,11 @@ class Authors(Resource):
     # decorators = [auth.login_required]
 
     def get(self):
-        try:
-            obj_list = map(lambda obj: obj.id, models.Author.query.all())
-            return jsonify(obj_list)
-        except:
-            abort(404)
+        # try:
+        obj_list = map(lambda obj: obj.id, models.Author.query.all())
+        return jsonify(obj_list)
+        # except:
+        #     abort(404)
 
     def post(self):
         pass

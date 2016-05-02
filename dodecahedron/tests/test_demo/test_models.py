@@ -60,8 +60,13 @@ class ModelsTestCase(TestCaseMixin):
             "Expected relationship holds (Orwell wrote 'Nineteen Eighty-Four')."
         )
 
-        self.assertEquals(
-            models.Edition.query.filter_by(title="Nineteen Eighty-Four").first().book,
-            models.Book.query.filter_by(title="Nineteen Eighty-Four").first(),
-            "'Book' matches its edition."
-        )
+        # Test Update
+        author = models.Author.find(last_name="Orwell", first_name="George")
+        author.update(**dict(last_name="Blair", first_name="Eric", middle_names="Arthur"))
+        author = models.Author.find(last_name="Blair")
+        self.assertEquals(author.first_name, "Eric", "Update successful")
+
+        # Test Delete
+        author = models.Author.find(last_name="Eliot", first_name="George")
+        author.delete()
+        self.assertIsNone(models.Author.find(last_name="Eliot", first_name="George"), "Delete successful")
